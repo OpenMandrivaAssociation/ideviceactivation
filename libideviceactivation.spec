@@ -15,11 +15,11 @@ License:	LGPLv2+
 Url:		http://www.libimobiledevice.org/
 Source0:	http://www.libimobiledevice.org/downloads/%{name}-%{version}.tar.xz
 
-BuildRequires:	pkgconfig(libimobiledevice)
-BuildRequires:	pkgconfig(libimobiledevice-glue)
-BuildRequires:	pkgconfig(libplist)
+BuildRequires:	pkgconfig(libimobiledevice-1.0)
+BuildRequires:	pkgconfig(libimobiledevice-glue-1.0)
+BuildRequires:	pkgconfig(libplist-2.0)
 BuildRequires:	pkgconfig(libcurl)
-BuildRequires:	pkgconfig(libxml2)
+BuildRequires:	pkgconfig(libxml-2.0)
 
 %description
 Provides an interface to activate and deactivate iOS devices by
