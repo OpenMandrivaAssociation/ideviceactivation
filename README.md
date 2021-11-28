@@ -1,1 +1,1 @@
-# ideviceactivation
+# libideviceactivation
