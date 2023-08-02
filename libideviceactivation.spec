@@ -1,19 +1,24 @@
 %define major	2
 %define api	1.0
 
-%define libname %mklibname ideviceactivation %{api} %{major}
+%define oldlibname %mklibname ideviceactivation %{api} %{major}
+%define libname %mklibname ideviceactivation %{api}
 %define devname %mklibname -d ideviceactivation
 
-%define	git	20211124
+%define	git	20230802
 
 Summary:	Library to manage the activation of iOS device
 Name:		libideviceactivation
 Version:	1.1.2
-Release:	1.%{git}.0
+Release:	%{?git:0.%{git}.}1
 Group:		System/Libraries
 License:	LGPLv2+
 Url:		http://www.libimobiledevice.org/
+%if 0%{?git:1}
+Source0:	https://github.com/libimobiledevice/libideviceactivation/archive/refs/heads/master.tar.gz#/%{name}-%{git}.tar.gz
+%else
 Source0:	http://www.libimobiledevice.org/downloads/%{name}-%{version}.tar.xz
+%endif
 
 BuildRequires:	pkgconfig(libimobiledevice-1.0)
 BuildRequires:	pkgconfig(libimobiledevice-glue-1.0)
@@ -54,14 +59,13 @@ Requires:       %{libname} = %{version}-%{release}
 ideviceactivation is a system tool which can be used to activate or deactivate iOS devices
 
 %prep
-%autosetup -p1
-
-%build
+%autosetup -p1 -n %{name}-%{?git:master}%{!?git:%{version}}
 autoreconf -fiv
 
 %configure \
 	--disable-static
 
+%build
 %make_build
 
 %install
